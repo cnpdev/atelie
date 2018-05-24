@@ -1,13 +1,16 @@
 security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        main:
+            entity: { class: App\Entity\User, property: username }
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            anonymous: ~
 
             # activate different ways to authenticate
 
